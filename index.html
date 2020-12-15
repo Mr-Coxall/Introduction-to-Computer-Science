@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sphinx to GitHub Pages &#8212; sphinxnotes-pages 1.0a documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="canonical" href="https://sphinx-notes.github.io/pages/index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="sphinx-to-github-pages">
+<h1>Sphinx to GitHub Pages<a class="headerlink" href="#sphinx-to-github-pages" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="https://github.com/sphinx-notes/pages"><img alt="https://img.shields.io/github/stars/sphinx-notes/pages.svg?style=social&amp;label=Star&amp;maxAge=2592000" src="https://img.shields.io/github/stars/sphinx-notes/pages.svg?style=social&amp;label=Star&amp;maxAge=2592000" /></a>
+<p>The project is originated from <a class="reference external" href="https://github.com/seanzhengw/sphinx-pages.">seanzhengw/sphinx-pages</a>,
+it builds Sphinx documentation and push to branch specified branch.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#different-from-the-predecessor" id="id1">Different from The Predecessor</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="id2">Usage</a></p>
+<ul>
+<li><p><a class="reference internal" href="#example-workflow-file" id="id3">Example Workflow file</a></p></li>
+<li><p><a class="reference internal" href="#inputs" id="id4">Inputs</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="different-from-the-predecessor">
+<h2>Different from The Predecessor<a class="headerlink" href="#different-from-the-predecessor" title="Permalink to this headline">¶</a></h2>
+<p>This proejct supports customize source directory of Sphinx documentation.
+I file a <a class="reference external" href="https://github.com/seanzhengw/sphinx-pages/pull/1">pull request</a> to upstream but it is not get merged yet.</p>
+<p>This proejct supports install python packages from <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>
+under source directory of Sphinx documentation. It is useful for such documentation
+that using non builtin Sphinx extension. This feature is also contained in the
+<a class="reference external" href="https://github.com/seanzhengw/sphinx-pages/pull/1">pull request</a> I mentioned.</p>
+<p>Finally, the most important one, The Sphinx program in <a class="reference external" href="https://github.com/seanzhengw/sphinx-pages.">seanzhengw/sphinx-pages</a>
+comes from docker image that provided by Sphinx Team. It is out-of-box,
+but not flexible enough.</p>
+<p>For example, The user of <a class="reference external" href="https://github.com/sphinx-notes/lilypond">sphinx-notes/lilypond</a> should have LilyPond installed
+when runing <code class="docutils literal notranslate"><span class="pre">sphinx-builder</span></code>, there is no a esay way to ask <a class="reference external" href="https://github.com/seanzhengw/sphinx-pages.">seanzhengw/sphinx-pages</a>
+install a LilyPond in docker container. The Sphinx program in this proejct comes
+from the image the specified by github workflow, so you can simplily install
+LilyPond before using this.</p>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="example-workflow-file">
+<h3>Example Workflow file<a class="headerlink" href="#example-workflow-file" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="inputs">
+<h3>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># https://help.github.com/en/articles/metadata-syntax-for-github-actions</span>
+<span class="nt">name</span><span class="p">:</span> <span class="s">&#39;Sphinx</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">GitHub</span><span class="nv"> </span><span class="s">Pages&#39;</span>
+<span class="nt">description</span><span class="p">:</span> <span class="s">&#39;GitHub</span><span class="nv"> </span><span class="s">Action</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">deploy</span><span class="nv"> </span><span class="s">Sphinx</span><span class="nv"> </span><span class="s">documentation</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">GitHub</span><span class="nv"> </span><span class="s">Pages&#39;</span>
+<span class="nt">author</span><span class="p">:</span> <span class="s">&#39;Shengyu</span><span class="nv"> </span><span class="s">Zhang&#39;</span>
+<span class="nt">branding</span><span class="p">:</span>
+  <span class="nt">color</span><span class="p">:</span> <span class="s">&#39;green&#39;</span>
+  <span class="nt">icon</span><span class="p">:</span> <span class="s">&#39;upload-cloud&#39;</span>
+<span class="nt">inputs</span><span class="p">:</span>
+  <span class="nt">target_branch</span><span class="p">:</span>
+    <span class="nt">description</span><span class="p">:</span> <span class="s">&#39;Git</span><span class="nv"> </span><span class="s">branch</span><span class="nv"> </span><span class="s">where</span><span class="nv"> </span><span class="s">assets</span><span class="nv"> </span><span class="s">will</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">deployed&#39;</span>
+    <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="s">&#39;gh-pages&#39;</span>
+  <span class="nt">repository_path</span><span class="p">:</span>
+    <span class="nt">description</span><span class="p">:</span> <span class="s">&#39;Relative</span><span class="nv"> </span><span class="s">path</span><span class="nv"> </span><span class="s">under</span><span class="nv"> </span><span class="s">$GITHUB_WORKSPACE</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">place</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">repository&#39;</span>
+    <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="s">&#39;.&#39;</span>
+  <span class="nt">documentation_path</span><span class="p">:</span>
+    <span class="nt">description</span><span class="p">:</span> <span class="s">&#39;Relative</span><span class="nv"> </span><span class="s">path</span><span class="nv"> </span><span class="s">under</span><span class="nv"> </span><span class="s">repository</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">documentation</span><span class="nv"> </span><span class="s">source</span><span class="nv"> </span><span class="s">files&#39;</span>
+    <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="s">&#39;.&#39;</span>
+  <span class="nt">install_requirements</span><span class="p">:</span>
+    <span class="nt">description</span><span class="p">:</span> <span class="s">&#39;Install</span><span class="nv"> </span><span class="s">Sphinx</span><span class="nv"> </span><span class="s">extensions</span><span class="nv"> </span><span class="s">listed</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">$doc_path/requirements.txt&#39;</span>
+    <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="s">&#39;true&#39;</span>
+
+<span class="nt">runs</span><span class="p">:</span>
+  <span class="nt">using</span><span class="p">:</span> <span class="s">&#39;node12&#39;</span>
+  <span class="nt">main</span><span class="p">:</span> <span class="s">&#39;main.js&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Shengyu Zhang.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
